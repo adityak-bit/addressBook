@@ -27,7 +27,6 @@ public class AddressBookMain {
 		long zip = in.nextLong();
 		
 		System.out.println("Enter phone number: ");
-		in.nextLine();
 		long phoneNumber = in.nextLong();
 		
 		System.out.println("Enter email: ");
