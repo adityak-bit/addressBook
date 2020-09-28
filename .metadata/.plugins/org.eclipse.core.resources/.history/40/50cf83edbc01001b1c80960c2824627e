@@ -7,7 +7,7 @@ public class Contact {
 	String city;
 	String state;
 	long zip;
-	String phoneNumber;
+	long phoneNumber;
 	String email;
 
 	public Contact(String firstName, String lastName, String address, String city, String state, long zip,
