@@ -4,80 +4,99 @@ import java.util.*;
 
 public class AddressBookMain {
 	public static void main(String[] args) {
-		System.out.println("Welcome to Address Book Program");
-		Scanner in = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		AddressBook ab = new AddressBook();
+		int c = 5;
+		int count = 0;
+		System.out.println("Welcome to the Address Book");
+		do {
 
-		System.out.println("Enter first name: ");
-		String firstName = in.nextLine();
+			System.out.println(
+					"Menu \n1.Add a contact \n2.Edit a Contact \n3.Remove a contact \n4.View all contact \n5.Exit");
+			c = sc.nextInt();
+			switch (c) {
+			case 1:
+				if (count < 1) {
+					System.out.println("Enter first name: ");
+					sc.nextLine();
+					String firstName = sc.nextLine();
+					System.out.println("Enter last name: ");
+					String lastName = sc.nextLine();
+					System.out.println("Enter address: ");
+					String address = sc.nextLine();
+					System.out.println("Enter city: ");
+					String city = sc.nextLine();
+					System.out.println("Enter state: ");
+					String state = sc.nextLine();
+					System.out.println("Enter zip: ");
+					long zip = sc.nextLong();
+					System.out.println("Enter phone number: ");
+					sc.nextLine();
+					String phoneNumber = sc.nextLine();
+					System.out.println("Enter email: ");
+					String email = sc.nextLine();
+					count++;
+					Contact x = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+					ab.addContact(x);
+					break;
+				} else {
+					System.out.println("Can add only one contact");
+					break;
+				}
 
-		System.out.println("Enter last name: ");
-		String lastName = in.nextLine();
+			case 2:
+				System.out.println("Update Contact:\nEnter name and all details:");
+				System.out.println("Enter first name: ");
+				sc.nextLine();
+				String firstName1 = sc.nextLine();
+				System.out.println("Enter last name: ");
+				String lastName1 = sc.nextLine();
+				System.out.println("Enter address: ");
+				String address1 = sc.nextLine();
+				System.out.println("Enter city: ");
+				String city1 = sc.nextLine();
+				System.out.println("Enter state: ");
+				String state1 = sc.nextLine();
+				System.out.println("Enter zip: ");
+				long zip1 = sc.nextLong();
+				System.out.println("Enter phone number: ");
+				sc.nextLine();
+				String phoneNumber1 = sc.nextLine();
+				System.out.println("Enter email: ");
+				String email1 = sc.nextLine();
 
-		System.out.println("Enter address: ");
-		String address = in.nextLine();
+				Contact update = new Contact(firstName1, lastName1, address1, city1, state1, zip1, phoneNumber1,
+						email1);
+				String s = ab.updateContact(update);
+				System.out.println(s);
+				break;
+			case 3:
+				System.out.println("Enter first name of contact to remove: ");
+				sc.nextLine();
+				String fname = sc.nextLine();
+				System.out.println("Enter last name of contact to remove: ");
+				String lname = sc.nextLine();
+				boolean b = ab.removeContact(fname, lname);
+				if (b)
+					System.out.println("Contact removed");
+				else
+					System.out.println("Contact not found");
+				break;
 
-		System.out.println("Enter city: ");
-		String city = in.nextLine();
+			case 4:
+				List<Contact> cl = new ArrayList<Contact>();
+				cl = ab.viewContacts();
+				System.out.println("The Contact in Address Book is: ");
+				for (Contact z : cl) {
+					System.out.println(z);
+				}
+				break;
 
-		System.out.println("Enter state: ");
-		String state = in.nextLine();
+			case 5:
+				break;
 
-		System.out.println("Enter zip: ");
-		long zip = in.nextLong();
+			}
 
-		System.out.println("Enter phone number: ");
-		in.nextLine();
-		long phoneNumber = in.nextLong();
-
-		System.out.println("Enter email: ");
-		String email = in.nextLine();
-
-		Contact c = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-		ab.addContact(c);
-
-		List<Contact> cl = new ArrayList<Contact>();
-		cl = ab.viewContacts();
-		System.out.println("The Contact in Address Book is: ");
-		for (Contact z : cl) {
-			System.out.println(z);
-		}
-
-		System.out.println("Üpdate Contact:\nEnter name and all details:");
-		System.out.println("Enter first name: ");
-		String firstName1 = in.nextLine();
-
-		System.out.println("Enter last name: ");
-		String lastName1 = in.nextLine();
-
-		System.out.println("Enter address: ");
-		String address1 = in.nextLine();
-
-		System.out.println("Enter city: ");
-		String city1 = in.nextLine();
-
-		System.out.println("Enter state: ");
-		String state1 = in.nextLine();
-
-		System.out.println("Enter zip: ");
-		long zip1 = in.nextLong();
-
-		System.out.println("Enter phone number: ");
-		long phoneNumber1 = in.nextLong();
-
-		System.out.println("Enter email: ");
-		String email1 = in.nextLine();
-
-		Contact update = new Contact(firstName1, lastName1, address1, city1, state1, zip1, phoneNumber1, email1);
-		String s = ab.updateContact(update);
-		System.out.println(s);
-
-		List<Contact> cli = new ArrayList<Contact>();
-		cli = ab.viewContacts();
-		System.out.println("The new Contact in Address Book is: ");
-		for (Contact z : cli) {
-			System.out.println(z);
-		}
-
+		} while (c != 5);
 	}
 }
